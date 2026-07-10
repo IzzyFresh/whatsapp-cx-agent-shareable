@@ -119,7 +119,7 @@ def save_to_gcs(base64_data: str, phone_number: str, doc_category: str) -> tuple
 @functions_framework.http
 def process_document_upload(request):
     """
-    HTTP Cloud Function triggered by Dialogflow CX OpenAPI Tool or webhook flows.
+    HTTP Cloud Function triggered by Google Cloud CX Agent OpenAPI Tool or webhook flows.
     Expects a JSON payload with either a GCS URI ('gcs_uri') or Base64 encoded document ('document').
     """
     request_json = request.get_json(force=True, silent=True)
@@ -127,7 +127,7 @@ def process_document_upload(request):
         return {"status": "error", "message": "Missing JSON payload."}, 400
         
     payload = request_json
-    # Handle Dialogflow CX double-encoded stringification wrapping
+    # Handle CX Agent double-encoded stringification wrapping
     if 'upload_document' in request_json:
         payload = request_json['upload_document']
         

@@ -1,8 +1,20 @@
-# WhatsApp Dialogflow CX Airline Agent Integration
+# Connecting Google Cloud CX Agents to WhatsApp
 
-This repository contains a complete, production-ready blueprint for integrating **Meta WhatsApp Cloud API** with **Google Cloud Dialogflow CX** and **Vertex AI (Gemini 3.5 Flash)** to build an automated, voice-enabled airline customer service agent.
+> **Ever wondered how to connect CX Agents from Google Cloud to WhatsApp?**
 
-The agent handles passenger queries like check-in, ticket booking, flight status updates, and authentication, backed by a Google Cloud BigQuery database and powered by Gemini for audio/voice note transcription.
+This repository contains a complete, production-ready blueprint for integrating the **Meta WhatsApp Cloud API** with **Google Cloud CX Agents** and **Vertex AI (Gemini 3.5 Flash)** to build an automated, voice-enabled customer service assistant.
+
+---
+
+### 🧠 What are Google Cloud CX Agents?
+
+Unlike traditional flow-based chat systems (such as legacy Dialogflow CX) which rely on rigid state machines, condition trees, and intent matching, **Google Cloud CX Agents** are next-generation, generative agents driven by playbooks. 
+
+* **Playbook-Driven**: They are guided by natural language instructions describing their role, task, and constraints.
+* **LLM-Powered**: They utilize Vertex AI foundation models to parse context, handle digressions, and maintain unstructured conversation flows natively.
+* **Tool-Enabled**: They integrate seamlessly with external services (like BigQuery, Cloud Functions, or Webhooks) by dynamically selecting and executing tools based on user intent.
+
+This architecture lets you build human-like agents in hours instead of weeks, with built-in reasoning capability that handles real-world customer interactions gracefully.
 
 ---
 
@@ -16,15 +28,15 @@ graph TD
     WhatsApp <-->|HTTP Webhook Events| Webhook[Cloud Run Webhook Service]
     Webhook -->|Upload Audio Notes| GCS[Cloud Storage Media Bucket]
     Webhook -->|Transcribe Audio| Gemini[Gemini 3.5 Flash API]
-    Webhook <-->|Detect Intent / Session State| Dialogflow[Dialogflow CX Playbook Agent]
+    Webhook <-->|Detect Intent / Session State| Dialogflow[Google Cloud CX Agent]
     Dialogflow <-->|Execute SQL Tools| BigQuery[(Google BigQuery Database)]
 ```
 
 1. **User Interaction**: The passenger sends a text message or a voice note on WhatsApp.
 2. **Webhook Receiver**: A lightweight Flask webhook running on **Google Cloud Run** receives the Meta event securely.
 3. **Voice Processing**: If the message is a voice note, the webhook downloads the audio stream, stores it temporarily in **Google Cloud Storage (GCS)**, and calls the **Gemini 3.5 Flash** model via the Google GenAI SDK to transcribe the audio into text.
-4. **Dialogflow CX Resolution**: The text message (original or transcribed) is sent to **Dialogflow CX**. The agent processes the conversation flow, manages state, and triggers integrations.
-5. **Database (BigQuery) Operations**: Dialogflow CX calls built-in BigQuery toolsets to verify passenger identity, query flight schedules, book flights, or complete a check-in status update.
+4. **CX Agent Resolution**: The text message (original or transcribed) is sent to the **CX Agent**. The agent processes the playbook instructions, manages session state, and triggers tool integrations.
+5. **Database (BigQuery) Operations**: The CX Agent executes BigQuery toolsets to verify passenger identity, query flight schedules, book flights, or complete check-ins.
 6. **Response loop**: The agent's response is formatted and pushed back to the user's phone via the Meta WhatsApp Send Message API.
 
 ---
@@ -32,7 +44,7 @@ graph TD
 ## 🌟 Key Features
 
 * **Voice-to-Text Capabilities**: Built-in support for voice note inputs using Google's state-of-the-art **Gemini 3.5 Flash** model.
-* **Unified State Management**: Managed via **Dialogflow CX** flows and playbooks.
+* **Unified State Management**: Managed natively via **Google Cloud CX Agent** Playbooks.
 * **Automated Data Lookup**: Real-time read/write interactions with Google BigQuery representing the airline reservation system.
 * **Security & Isolation**: Clean decoupling of credentials using environment variables.
 * **Single-Command Deployment**: Scripted deployment using Cloud Build and Google Cloud Run.
@@ -50,13 +62,13 @@ graph TD
 │   │   └── requirements.txt       # Backend dependencies
 │   ├── webhook/
 │   │   ├── main.py                # WhatsApp Webhook receiver & Gemini transcriber
-│   │   ├── cx_client.py           # Dialogflow CX API interactions
+│   │   ├── cx_client.py           # CX Agent API interactions
 │   │   ├── whatsapp_client.py     # Meta WhatsApp API helper
 │   │   └── requirements.txt       # Webhook dependencies
 │   ├── .env.template              # Environment configuration template
 │   └── deploy.sh                  # Cloud Run deployment script
 └── exported_app_airline-agent/
-    └── airline-agent/             # Exported Dialogflow CX agent files
+    └── airline-agent/             # Exported CX Agent files
 ```
 
 ---
@@ -116,12 +128,12 @@ This script creates a BigQuery dataset named `airline_example_demo` and a `reser
 
 ---
 
-### Step 3: Import the Dialogflow CX Agent
-1. Open the **[Dialogflow CX Console](https://dialogflow.cloud.google.com/cx/)**.
+### Step 3: Import the Google Cloud CX Agent
+1. Open the **[Dialogflow CX / Agent Builder Console](https://dialogflow.cloud.google.com/cx/)**.
 2. Select your Google Cloud Project.
 3. Click **Create Agent** or select **Import Agent** if you are importing into an existing configuration.
 4. Choose **Upload** and select the ZIP file found in the exported agent directory (`exported_app_airline-agent/airline-agent`).
-5. Set up a dedicated Service Account in Dialogflow CX and configure access to BigQuery. Reference the `exported_app_airline-agent/airline-agent/environment.json` file for the expected format.
+5. Set up a dedicated Service Account in the console and configure access to BigQuery. Reference the `exported_app_airline-agent/airline-agent/environment.json` file for the expected format.
 
 ---
 
@@ -150,4 +162,4 @@ Once deployed, the script outputs a **Cloud Run Webhook URL**.
 Once everything is configured:
 1. Send a text message like `"Hi"` or `"I want to check in"` to your WhatsApp Business phone number.
 2. Try sending a voice note (audio message) asking `"What is my flight status?"` or `"I want to authenticate myself"`.
-3. Check the Cloud Run service logs to monitor the voice-to-text transcription process and Dialogflow CX responses.
+3. Check the Cloud Run service logs to monitor the voice-to-text transcription process and CX Agent responses.
