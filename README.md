@@ -116,15 +116,23 @@ Fill out the keys in `.env`:
 
 ---
 
-### Step 2: Initialize the BigQuery Database
-Install backend dependencies and run the BigQuery seeder script to create the reservation tables and seed dummy flights and tickets:
+### Step 2: Initialize the BigQuery Database & Seeding
+Install backend dependencies and run the BigQuery seeder script to initialize the dataset, create the tables, and seed them with sample records:
 ```bash
 cd airline-example-whatsapp/backend
 pip install -r requirements.txt
 export GOOGLE_CLOUD_PROJECT="your-project-id"
 python setup_bq.py
 ```
-This script creates a BigQuery dataset named `airline_example_demo` and a `reservations` table containing passenger details, confirmation numbers, member numbers, and flight details.
+This script creates a BigQuery dataset named `airline_example_demo` and establishes schemas for the `passports`, `tickets`, `baggage_logs`, and `reservations` tables. 
+
+#### 📊 Seeded Reservation Table Sample Data:
+When initialized, the script automatically seeds the `reservations` table with the following mock passenger profiles to facilitate testing:
+
+| First Name | Last Name | Member Number | Password | Confirmation Code (PNR) | Loyalty Tier | Flight Number | Origin | Destination | Flight Status | Status |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Israel** | Castillo | `MEM123` | `lola` | `BK7890` | Platinum | `CM102` | PTY | MIA | On Time | Confirmed |
+| **Jane** | Doe | `MEM456` | `secret` | `JDN456` | Gold | `CM223` | JFK | PTY | Delayed | Confirmed |
 
 ---
 
@@ -134,6 +142,11 @@ This script creates a BigQuery dataset named `airline_example_demo` and a `reser
 3. Click **Create Agent** or select **Import Agent** if you are importing into an existing configuration.
 4. Choose **Upload** and select the ZIP file found in the exported agent directory (`exported_app_airline-agent/airline-agent`).
 5. Set up a dedicated Service Account in the console and configure access to BigQuery. Reference the `exported_app_airline-agent/airline-agent/environment.json` file for the expected format.
+
+#### 🔌 Configuring Model Context Protocol (MCP) Toolsets:
+The CX Agent playbooks utilize the open-source **Model Context Protocol (MCP)** toolset to connect with BigQuery. 
+* To configure and link the MCP server to your playbooks, follow the official **[Google Cloud Model Context Protocol (MCP) Tools Documentation](https://cloud.google.com/dialogflow/vertex/docs/concept/mcp)**.
+* Make sure to bind the service account credentials to the `big_query` toolset configuration as defined under `exported_app_airline-agent/airline-agent/toolsets/big_query/big_query.json`.
 
 ---
 
