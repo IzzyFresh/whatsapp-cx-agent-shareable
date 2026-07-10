@@ -1,0 +1,9 @@
+functions-framework==3.4.0
+flask==2.3.3
+requests==2.31.0
+./ces-v1beta-py.tar
+google-cloud-storage==2.14.0
+google-auth==2.27.0
+python-dotenv==1.0.0
+google-genai==0.3.0
+

@@ -1,0 +1,15 @@
+{
+  "name": "87aaae8f-f5cc-4d71-bfcb-59072bf71af2",
+  "displayName": "big_query",
+  "mcpToolset": {
+    "serverAddress": "https://bigquery.googleapis.com/mcp",
+    "apiAuthentication": {
+      "serviceAccountAuthConfig": {
+        "serviceAccount": "$env_var",
+        "scopes": ["https://www.googleapis.com/auth/bigquery"]
+      }
+    }
+  },
+  "executionType": "SYNCHRONOUS",
+  "description": "used  for agents to query data in big query tables using natural language"
+}

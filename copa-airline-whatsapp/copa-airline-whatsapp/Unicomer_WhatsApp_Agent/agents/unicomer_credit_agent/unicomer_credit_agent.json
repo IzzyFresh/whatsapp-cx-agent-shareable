@@ -1,0 +1,22 @@
+{
+  "name": "00000000-0000-0000-0000-000000000000",
+  "displayName": "unicomer_credit_agent",
+  "llmModelSettings": {
+    "model": "gemini-3.0-flash-001"
+  },
+  "instruction": "agents/unicomer_credit_agent/instruction.txt",
+  "toolsets": [
+    {
+      "toolset": "credit_decision_api",
+      "toolIds": [
+        "get_credit_decision"
+      ]
+    },
+    {
+      "toolset": "document_ingestion_api",
+      "toolIds": [
+        "upload_document"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "c19d4604-bd67-4447-856a-bb074317638a",
+  "clientFunction": {
+    "name": "query_ticket",
+    "description": "Queries flight details and ticket information based on a confirmation code and passenger\u0027s last name.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "confirmation_code": {
+          "type": "STRING",
+          "description": "The 6-character confirmation code (PNR)."
+        },
+        "last_name": {
+          "type": "STRING",
+          "description": "The passenger\u0027s last name."
+        }
+      },
+      "required": ["confirmation_code", "last_name"]
+    },
+    "response": {
+      "type": "OBJECT",
+      "properties": {
+        "boarding_pass_link": {
+          "type": "STRING"
+        },
+        "date": {
+          "type": "STRING"
+        },
+        "departure_time": {
+          "type": "STRING"
+        },
+        "destination": {
+          "type": "STRING"
+        },
+        "flight": {
+          "type": "STRING"
+        },
+        "origin": {
+          "type": "STRING"
+        },
+        "passenger": {
+          "type": "STRING"
+        },
+        "status": {
+          "type": "STRING"
+        }
+      }
+    }
+  },
+  "displayName": "query_ticket",
+  "toolFakeConfig": {
+    "codeBlock": {
+      "pythonCode": "tools/query_ticket/tool_fake_config/code_block/python_code.py"
+    },
+    "enableFakeMode": true
+  }
+}

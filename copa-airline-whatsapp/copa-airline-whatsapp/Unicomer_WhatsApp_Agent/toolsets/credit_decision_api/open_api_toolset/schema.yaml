@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: Credit Decision API
+  version: 1.0.0
+servers:
+  - url: $env_var
+paths:
+  /approve:
+    post:
+      operationId: get_credit_decision
+      summary: Retrieve the finalized credit approval decision and offer amount.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  description: The customer's WhatsApp phone number.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  decision:
+                    type: string
+                  offer_amount:
+                    type: string
+                  reason:
+                    type: string

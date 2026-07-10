@@ -1,0 +1,12 @@
+{
+  "name": "airline-steering-agent-001",
+  "displayName": "Airline_Steering_agent",
+  "description": "Router agent that greets the user and routes them to specialized airline sub-agents.",
+  "instruction": "agents/Airline_Steering_agent/instruction.txt",
+  "tools": ["end_session"],
+  "childAgents": ["Baggage", "Booking", "CheckIn", "FlightStatus"],
+  "toolsets": [{
+    "toolset": "big_query",
+    "toolIds": ["execute_sql_readonly"]
+  }]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "airline-checkin-agent-001",
+  "displayName": "CheckIn",
+  "description": "Sub-agent that handles check-in and boarding passes.",
+  "instruction": "agents/CheckIn/instruction.txt",
+  "tools": ["end_session"],
+  "toolsets": [{
+    "toolset": "big_query",
+    "toolIds": ["execute_sql"]
+  }]
+}

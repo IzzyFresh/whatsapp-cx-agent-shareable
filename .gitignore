@@ -1,0 +1,22 @@
+# Secrets
+.env
+.env.local
+
+# Python cache and environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Node modules (in case customer uses them)
+node_modules/

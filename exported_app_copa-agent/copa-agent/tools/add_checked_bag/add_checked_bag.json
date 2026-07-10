@@ -1,0 +1,51 @@
+{
+  "name": "b566772a-f15f-4ede-9d13-d8f6185eecab",
+  "clientFunction": {
+    "name": "add_checked_bag",
+    "description": "Adds checked bags to a reservation and calculates the fee.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "bag_count": {
+          "type": "INTEGER",
+          "description": "The number of bags to add."
+        },
+        "confirmation_code": {
+          "type": "STRING",
+          "description": "The 6-character confirmation code."
+        }
+      },
+      "required": ["confirmation_code", "bag_count"]
+    },
+    "response": {
+      "type": "OBJECT",
+      "properties": {
+        "bags_added": {
+          "type": "INTEGER"
+        },
+        "confirmation_code": {
+          "type": "STRING"
+        },
+        "currency": {
+          "type": "STRING"
+        },
+        "fee_amount": {
+          "type": "INTEGER"
+        },
+        "message": {
+          "type": "STRING"
+        },
+        "status": {
+          "type": "STRING"
+        }
+      }
+    }
+  },
+  "displayName": "add_checked_bag",
+  "toolFakeConfig": {
+    "codeBlock": {
+      "pythonCode": "tools/add_checked_bag/tool_fake_config/code_block/python_code.py"
+    },
+    "enableFakeMode": true
+  }
+}

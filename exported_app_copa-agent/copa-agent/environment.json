@@ -1,0 +1,13 @@
+{
+  "toolsets": {
+    "big_query": {
+      "mcpToolset": {
+        "apiAuthentication": {
+          "serviceAccountAuthConfig": {
+            "serviceAccount": "cx-agent-dedicated-sa@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com"
+          }
+        }
+      }
+    }
+  }
+}

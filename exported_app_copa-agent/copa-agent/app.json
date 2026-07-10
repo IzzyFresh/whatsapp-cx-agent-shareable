@@ -1,0 +1,42 @@
+{
+  "name": "735fe9e8-a8ff-4d87-a6d1-6adcbd9b7dc0",
+  "displayName": "copa-agent",
+  "description": "An agent built to assist with airline inquiries like booking, check-in, and flight status.",
+  "rootAgent": "Airline_Steering_agent",
+  "audioProcessingConfig": {
+    "synthesizeSpeechConfigs": {
+      "en-US": {
+      },
+      "es-US": {
+      }
+    }
+  },
+  "loggingSettings": {
+    "conversationLoggingSettings": {
+      "retentionWindow": "31536000s"
+    }
+  },
+  "modelSettings": {
+    "model": "gemini-3.1-flash-live"
+  },
+  "variableDeclarations": [{
+    "name": "user_name",
+    "description": "collects username for personalization",
+    "schema": {
+      "type": "STRING"
+    }
+  }],
+  "globalInstruction": "global_instruction.txt",
+  "languageSettings": {
+    "defaultLanguageCode": "es-US",
+    "supportedLanguageCodes": ["en-US"]
+  },
+  "defaultChannelProfile": {
+  },
+  "timeZoneSettings": {
+    "timeZone": "America/New_York"
+  },
+  "toolExecutionMode": "PARALLEL",
+  "errorHandlingSettings": {
+  }
+}

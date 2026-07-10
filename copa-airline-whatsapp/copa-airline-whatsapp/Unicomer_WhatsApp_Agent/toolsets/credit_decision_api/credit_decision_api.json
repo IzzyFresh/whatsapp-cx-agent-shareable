@@ -1,0 +1,8 @@
+{
+  "name": "00000000-0000-0000-0000-000000000000",
+  "displayName": "credit_decision_api",
+  "openApiToolset": {
+    "openApiSchema": "toolsets/credit_decision_api/open_api_toolset/schema.yaml",
+    "url": "$credit_decision_url"
+  }
+}
