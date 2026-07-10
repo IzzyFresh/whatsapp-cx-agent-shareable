@@ -61,10 +61,10 @@ if [ "$REGION" = "us" ] || [ "$REGION" = "global" ]; then
   echo "   Overriding deployment region to '$RUN_REGION' for Cloud Run, while keeping original env vars."
 fi
 
-echo "🚀 Deploying 'copa-airline-whatsapp' to Google Cloud Run in project '$PROJECT_ID' (Region: $RUN_REGION)..."
+echo "🚀 Deploying 'airline-example-whatsapp' to Google Cloud Run in project '$PROJECT_ID' (Region: $RUN_REGION)..."
 echo "📦 Building container on Cloud Build & registering Service..."
 
-gcloud run deploy copa-airline-whatsapp \
+gcloud run deploy airline-example-whatsapp \
   --source . \
   --project "$PROJECT_ID" \
   --region "$RUN_REGION" \
@@ -73,7 +73,7 @@ gcloud run deploy copa-airline-whatsapp \
   --quiet
 
 # Retrieve the generated service URL
-SERVICE_URL=$(gcloud run services describe copa-airline-whatsapp --project "$PROJECT_ID" --region "$RUN_REGION" --format 'value(status.url)')
+SERVICE_URL=$(gcloud run services describe airline-example-whatsapp --project "$PROJECT_ID" --region "$RUN_REGION" --format 'value(status.url)')
 
 echo ""
 echo "================================================================="

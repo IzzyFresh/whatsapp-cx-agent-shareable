@@ -22,7 +22,7 @@
                 1. Acknowledge receipt of the information.
                 2. Call the tool {@TOOL: big_query_execute_sql} to update the status to 'Checked In' in the table `YOUR_GCP_PROJECT_ID.airline_demo.reservations` for the matching confirmation code and last name:
                    `UPDATE \`YOUR_GCP_PROJECT_ID.airline_demo.reservations\` SET status = 'Checked In' WHERE confirmation_code = '$confirmation_code' AND last_name = '$last_name'`
-                3. Based on a successful update, provide the confirmation response: "Check-in successful with Copa Airlines! You can download your boarding pass here: https://example.com/bp/$confirmation_code."
+                3. Based on a successful update, provide the confirmation response: "Check-in successful with Airline Example! You can download your boarding pass here: https://example.com/bp/$confirmation_code."
                 4. Ask if they need help with anything else related to check-in.
             </action>
         </step>
@@ -33,6 +33,6 @@ EXAMPLE 1:
 [user]
 I want to check in for my flight.
 [model]
-Check-in successful with Copa Airlines! Since you are logged in, I have automatically checked you in. You can download your boarding pass here: https://example.com/bp/BK7890. Is there anything else related to check-in I can help you with?
+Check-in successful with Airline Example! Since you are logged in, I have automatically checked you in. You can download your boarding pass here: https://example.com/bp/BK7890. Is there anything else related to check-in I can help you with?
 End example
 </examples>

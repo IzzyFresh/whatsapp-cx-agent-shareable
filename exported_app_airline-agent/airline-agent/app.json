@@ -1,6 +1,6 @@
 {
   "name": "735fe9e8-a8ff-4d87-a6d1-6adcbd9b7dc0",
-  "displayName": "copa-agent",
+  "displayName": "airline-agent",
   "description": "An agent built to assist with airline inquiries like booking, check-in, and flight status.",
   "rootAgent": "Airline_Steering_agent",
   "audioProcessingConfig": {

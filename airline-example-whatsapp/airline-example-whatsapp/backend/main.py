@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 # Environment Configuration
 PROJECT_ID = os.environ.get("GOOGLE_CLOUD_PROJECT", "YOUR_GCP_PROJECT_ID")
 LOCATION = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
-BQ_DATASET = os.environ.get("BQ_DATASET", "copa_airline_demo")
+BQ_DATASET = os.environ.get("BQ_DATASET", "airline_example_demo")
 MODEL_ID = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
 GCS_BUCKET = os.environ.get("GCS_BUCKET_NAME", "YOUR_GCS_BUCKET_NAME")
 
@@ -87,7 +87,7 @@ def insert_into_bigquery(table_name: str, extracted_data: dict, gcs_uri: str):
             doc_row[matched_col] = str(v)
 
     if 'id' in valid_columns:
-        doc_row['id'] = f"copa-upload-{int(time.time())}"
+        doc_row['id'] = f"airline-upload-{int(time.time())}"
     if 'file' in valid_columns:
         doc_row['file'] = gcs_uri
         

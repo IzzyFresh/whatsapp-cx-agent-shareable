@@ -43,7 +43,7 @@ graph TD
 
 ```
 ├── README.md                      # This documentation
-├── copa-airline-whatsapp/
+├── airline-example-whatsapp/
 │   ├── backend/
 │   │   ├── main.py                # Backend server for database API endpoints
 │   │   ├── setup_bq.py            # BigQuery table setup & seeding script
@@ -55,8 +55,8 @@ graph TD
 │   │   └── requirements.txt       # Webhook dependencies
 │   ├── .env.template              # Environment configuration template
 │   └── deploy.sh                  # Cloud Run deployment script
-└── exported_app_copa-agent/
-    └── copa-agent/                # Exported Dialogflow CX agent files
+└── exported_app_airline-agent/
+    └── airline-agent/             # Exported Dialogflow CX agent files
 ```
 
 ---
@@ -90,9 +90,9 @@ Make sure your deployment credentials or Service Account has roles:
 ## 🚀 Setup Walkthrough
 
 ### Step 1: Prepare Environment Variables
-Copy `.env.template` to a new file named `.env` in the `copa-airline-whatsapp` directory:
+Copy `.env.template` to a new file named `.env` in the `airline-example-whatsapp` directory:
 ```bash
-cp copa-airline-whatsapp/.env.template copa-airline-whatsapp/.env
+cp airline-example-whatsapp/.env.template airline-example-whatsapp/.env
 ```
 Fill out the keys in `.env`:
 * `WHATSAPP_TOKEN`: Your Meta WhatsApp Access Token.
@@ -107,12 +107,12 @@ Fill out the keys in `.env`:
 ### Step 2: Initialize the BigQuery Database
 Install backend dependencies and run the BigQuery seeder script to create the reservation tables and seed dummy flights and tickets:
 ```bash
-cd copa-airline-whatsapp/backend
+cd airline-example-whatsapp/backend
 pip install -r requirements.txt
 export GOOGLE_CLOUD_PROJECT="your-project-id"
 python setup_bq.py
 ```
-This script creates a BigQuery dataset named `copa_airline_demo` and a `reservations` table containing passenger details, confirmation numbers, member numbers, and flight details.
+This script creates a BigQuery dataset named `airline_example_demo` and a `reservations` table containing passenger details, confirmation numbers, member numbers, and flight details.
 
 ---
 
@@ -120,15 +120,15 @@ This script creates a BigQuery dataset named `copa_airline_demo` and a `reservat
 1. Open the **[Dialogflow CX Console](https://dialogflow.cloud.google.com/cx/)**.
 2. Select your Google Cloud Project.
 3. Click **Create Agent** or select **Import Agent** if you are importing into an existing configuration.
-4. Choose **Upload** and select the ZIP file found in the exported agent directory (`exported_app_copa-agent/copa-agent`).
-5. Set up a dedicated Service Account in Dialogflow CX and configure access to BigQuery. Reference the `exported_app_copa-agent/copa-agent/environment.json` file for the expected format.
+4. Choose **Upload** and select the ZIP file found in the exported agent directory (`exported_app_airline-agent/airline-agent`).
+5. Set up a dedicated Service Account in Dialogflow CX and configure access to BigQuery. Reference the `exported_app_airline-agent/airline-agent/environment.json` file for the expected format.
 
 ---
 
 ### Step 4: Deploy the Webhook to Cloud Run
 To compile your container and deploy the WhatsApp integration to Google Cloud Run, execute the deployment script:
 ```bash
-cd copa-airline-whatsapp
+cd airline-example-whatsapp
 chmod +x deploy.sh
 ./deploy.sh
 ```

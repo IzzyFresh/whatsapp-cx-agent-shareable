@@ -29,7 +29,7 @@
                    - Write the travel date to **`departure_date`** (This column is of type DATE, so convert dates like 'tomorrow' or 'May 28th' to ISO format `YYYY-MM-DD` based on `$session.current_date` or the user input)
                    - Write passenger's name to **`first_name`** and **`last_name`** (using session variables `$session.first_name` and `$session.last_name` if available, or defaulting to 'Guest' and 'Passenger')
                    - Set **`status`** to `'Confirmed'`
-                5. Provide the confirmation response to the user: "I found a great flight on Copa Airlines for you! Booking confirmed from [Origin] to [Destination] on [Dates]. Your confirmation code is [Generated Code]."
+                5. Provide the confirmation response to the user: "I found a great flight on Airline Example for you! Booking confirmed from [Origin] to [Destination] on [Dates]. Your confirmation code is [Generated Code]."
                 6. Ask if they need help with anything else.
             </action>
         </step>
@@ -49,6 +49,6 @@ Great, London to New York. And what dates are you looking to travel?
 May 28th
 [model]
 Processing your booking...
-I found a great flight on Copa Airlines for you! Booking confirmed from London to New York on May 28th. Your confirmation code is BK7890. Is there anything else I can help you with?
+I found a great flight on Airline Example for you! Booking confirmed from London to New York on May 28th. Your confirmation code is BK7890. Is there anything else I can help you with?
 End example
 </examples>

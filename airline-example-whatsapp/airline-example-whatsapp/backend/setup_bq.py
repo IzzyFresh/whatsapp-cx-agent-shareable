@@ -2,7 +2,7 @@ import os
 from google.cloud import bigquery
 
 PROJECT_ID = os.environ.get("GOOGLE_CLOUD_PROJECT", "YOUR_GCP_PROJECT_ID")
-DATASET_ID = os.environ.get("BQ_DATASET", "copa_airline_demo")
+DATASET_ID = os.environ.get("BQ_DATASET", "airline_example_demo")
 
 def setup_bigquery():
     client = bigquery.Client(project=PROJECT_ID)
